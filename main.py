@@ -4,7 +4,6 @@ import time
 
 YEAR = 2022
 DAY = 1
-PART = 1
 
 def file_not_found(filename):
     print(f"Could not locate {filename}")
@@ -12,9 +11,9 @@ def file_not_found(filename):
     exit()
 
 try:
-    puzzle = import_module(f"{YEAR}.{DAY:02}.part{PART}")
+    puzzle = import_module(f"{YEAR}.{DAY:02}.day")
 except ImportError:
-    file_not_found(f"part{PART}.py")
+    file_not_found(f"day.py")
     
 try:
     with open(f"{YEAR}/{DAY:02}/input.txt") as f:
@@ -23,24 +22,29 @@ try:
 except FileNotFoundError:
     file_not_found("input.txt")
 
-print(f"Running day {DAY}, part {PART}...", end=" ")
-
+print(f"Running day {DAY}, part 1...", end=" ")
 start_time = time.time()
-result = puzzle.run(data)
+result1 = getattr(puzzle, f"run_part_1")(data)
 end_time = time.time()
+print(f"Completed in {(end_time - start_time):0.5f} seconds")
+print(f"Running day {DAY}, part 2...", end=" ")
+start_time = time.time()
+result2 = getattr(puzzle, f"run_part_2")(data)
+end_time = time.time()
+print(f"Completed in {(end_time - start_time):0.5f} seconds")
 
-print(f"Completed in {(end_time - start_time):0.5f} seconds\n")
-
-res_str = f"Result: {result}"
+res1_str = f"Part 1: {result1}"
+res2_str = f"Part 2: {result2}"
+tag_size = max(len(res1_str), len(res2_str)) + 2
 res_decoration = (
-    f"        .__.      .{'='*(len(res_str)+2)}.\n"
-    f"      .(\\\\//).  .-[ {res_str} ]\n"
-    f"     .(\\\\()//)./  '{'='*(len(res_str)+2)}'\n"
-    f" .----(\)\/(/)----.\n"
+    f"        .__.        .{'='*tag_size}.\n"
+    f"      .(\\\\//).  .---[ {res1_str.ljust(tag_size-2, ' ')} ]\n"
+    f"     .(\\\\()//)./    [ {res2_str.ljust(tag_size-2, ' ')} ]\n"
+    f" .----(\)\/(/)----. '{'='*tag_size}'\n"
     f" |     ///\\\\\     |\n"
     f" |    ///||\\\\\    |\n"
     f" |   //`||||`\\\\   |\n"
     f" |      ||||      |\n"
-    f" '------====------'     Happy Christmas!\n"
+    f" '------====------'   Happy Christmas!\n"
 )
 print(res_decoration)
