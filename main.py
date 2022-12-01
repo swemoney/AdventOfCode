@@ -22,19 +22,16 @@ try:
 except FileNotFoundError:
     file_not_found("input.txt")
 
-print(f"Running day {DAY}, part 1...", end=" ")
-start_time = time.time()
+print(f"Running Day {DAY} Puzzles...\n")
+start_time1 = time.time()
 result1 = getattr(puzzle, f"run_part_1")(data)
-end_time = time.time()
-print(f"Completed in {(end_time - start_time):0.5f} seconds")
-print(f"Running day {DAY}, part 2...", end=" ")
-start_time = time.time()
+end_time1 = time.time()
+start_time2 = time.time()
 result2 = getattr(puzzle, f"run_part_2")(data)
-end_time = time.time()
-print(f"Completed in {(end_time - start_time):0.5f} seconds")
+end_time2 = time.time()
 
-res1_str = f"Part 1: {result1}"
-res2_str = f"Part 2: {result2}"
+res1_str = f"Part 1 ({(end_time1 - start_time1):0.3f}s): {result1}"
+res2_str = f"Part 2 ({(end_time2 - start_time2):0.3f}s): {result2}"
 tag_size = max(len(res1_str), len(res2_str)) + 2
 res_decoration = (
     f"        .__.        .{'='*tag_size}.\n"
