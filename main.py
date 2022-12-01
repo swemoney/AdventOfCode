@@ -30,4 +30,17 @@ result = puzzle.run(data)
 end_time = time.time()
 
 print(f"Completed in {(end_time - start_time):0.5f} seconds\n")
-print(f"  - Result: {result}\n")
+
+res_str = f"Result: {result}"
+res_decoration = (
+    f"        .__.      .{'='*(len(res_str)+2)}.\n"
+    f"      .(\\\\//).  .-[ {res_str} ]\n"
+    f"     .(\\\\()//)./  '{'='*(len(res_str)+2)}'\n"
+    f" .----(\)\/(/)----.\n"
+    f" |     ///\\\\\     |\n"
+    f" |    ///||\\\\\    |\n"
+    f" |   //`||||`\\\\   |\n"
+    f" |      ||||      |\n"
+    f" '------====------'     Happy Christmas!\n"
+)
+print(res_decoration)
