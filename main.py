@@ -3,7 +3,7 @@ import datetime
 import time
 
 YEAR = 2022
-DAY = 1
+DAY = 2
 
 def file_not_found(filename):
     print(f"Could not locate {filename}")
@@ -27,7 +27,10 @@ start_time1 = time.time()
 result1 = getattr(puzzle, f"run_part_1")(data)
 end_time1 = time.time()
 start_time2 = time.time()
-result2 = getattr(puzzle, f"run_part_2")(data)
+try:
+    result2 = getattr(puzzle, f"run_part_2")(data)
+except:
+    result2 = "N\A"
 end_time2 = time.time()
 
 res1_str = f"Part 1 ({(end_time1 - start_time1):0.3f}s): {result1}"
