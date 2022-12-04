@@ -33,8 +33,8 @@ except:
     result2 = "N\A"
 end_time2 = time.time()
 
-res1_str = f"Part 1 ({(end_time1 - start_time1):0.3f}s): {result1}"
-res2_str = f"Part 2 ({(end_time2 - start_time2):0.3f}s): {result2}"
+res1_str = f"({int((end_time1 - start_time1)*1000)}ms) Part 1: {result1}"
+res2_str = f"({int((end_time2 - start_time2)*1000)}ms) Part 2: {result2}"
 tag_size = max(len(res1_str), len(res2_str)) + 2
 res_decoration = (
     f"        .__.        .{'='*tag_size}.\n"
