@@ -27,10 +27,7 @@ start_time1 = time.time()
 result1 = getattr(puzzle, f"run_part_1")(data)
 end_time1 = time.time()
 start_time2 = time.time()
-try:
     result2 = getattr(puzzle, f"run_part_2")(data)
-except:
-    result2 = "N\A"
 end_time2 = time.time()
 
 res1_str = f"({(end_time1 - start_time1)*1000:0.2f}ms) Part 1: {result1}"
