@@ -10,13 +10,11 @@ def run_part_1(data):
         sand_fallen += 1
     return sand_fallen
 
-# This took 27 minutes to finish. 
-# I got the right answer and don't have time to make it better right now. :P
-def run_part_2(data): 
+def run_part_2(data):
     blocked = deepcopy(data)
     max_y = max(blocked, key=lambda c: c[1])[1]
     for i in range(500-max_y-5,500+max_y+5): # Add the bottom floor at the maximum size needed
-        blocked.append((i,max_y+2))
+        blocked.add((i,max_y+2))
     sand_fallen = 1
     while move_sand(blocked, max_y) is not None:
         sand_fallen += 1
@@ -33,7 +31,7 @@ def move_sand(blocked, max_y, sand_pos=(500,0)):
 
     if sand_pos == (500,0): return None
 
-    blocked.append(sand_pos)
+    blocked.add(sand_pos)
     return sand_pos
 
 def parse_input(data):
@@ -52,4 +50,4 @@ def parse_input(data):
                 step = -1 if cx > nx else 1
                 for j in range(cx, nx+step, step):
                     rocks.add((j,cy))
-    return list(rocks)
+    return rocks
