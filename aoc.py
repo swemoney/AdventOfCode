@@ -30,7 +30,7 @@ def create_new_day():
     print(f" * Fetching puzzle data from adventofcode.com")
     aocd = Puzzle(day=DAY, year=YEAR)
     DAY_FILE = f"# Day {DAY}\n\ndef run_part_1(data):\n    return \"N/A\"\n\ndef run_part_2(data):\n    return \"N/A\"\n\ndef parse_input(data):\n    return data\n"
-    README_FILE = f"# Day {DAY} ({YEAR})\n\n`{aocd.title}` [prompt](https://adventofcode.com/{YEAR}/day/{DAY})\n\n## Part 1\n\n##Part 2"
+    README_FILE = f"# Day {DAY} ({YEAR})\n\n`{aocd.title}` [prompt](https://adventofcode.com/{YEAR}/day/{DAY})\n\n## Part 1\n\n## Part 2"
 
     print(f" * Creating directory: {day_dir}")
     day_dir.mkdir(parents=True, exist_ok=True)
