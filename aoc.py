@@ -102,17 +102,21 @@ end_time2 = time.time()
 res1_str = f"({(end_time1 - start_time1)*1000:0.2f}ms) Part 1: {result1}"
 res2_str = f"({(end_time2 - start_time2)*1000:0.2f}ms) Part 2: {result2}"
 tag_size = max(len(res1_str), len(res2_str)) + 2
+
+from colorama import just_fix_windows_console, Fore, Style
+just_fix_windows_console()
+
 res_decoration = (
-    r"                 ." + f"{'='*tag_size}.\n"
-    r"       .__.      [ " + f"{res1_str.ljust(tag_size-2, ' ')} ]\n"
-    r"     .(\\//).  .-[ " + f"{res2_str.ljust(tag_size-2, ' ')} ]\n"
-    r"    .(\\()//)./  '" + f"{'='*tag_size}'\n"
-    r".----(\)\/(/)----." + "\n"
-    r"|     ///\\\     |" + "\n"
-    r"|    ///||\\\    |" + "\n"
-    r"|   //`||||`\\   |" + "\n"
-    r"|      ||||      |" + "\n"
-    r"|      ||||      |" + "\n"
-    r"'------====------'" + "\n"
+    f"                 {Fore.GREEN}{Style.BRIGHT}." + f"{'='*tag_size}.{Style.RESET_ALL}\n"
+    f"       {Fore.GREEN}{Style.DIM}.{Style.NORMAL}__{Style.DIM}.      {Style.RESET_ALL}{Fore.GREEN}{Style.BRIGHT}[{Style.RESET_ALL} " + f"{res1_str.ljust(tag_size-2, ' ')} {Fore.GREEN}{Style.BRIGHT}]{Style.RESET_ALL}\n"
+    f"     {Fore.GREEN}{Style.DIM}.{Style.NORMAL}(\\\\//){Style.DIM}.  .-{Style.RESET_ALL}{Fore.GREEN}{Style.BRIGHT}[{Style.RESET_ALL} " + f"{res2_str.ljust(tag_size-2, ' ')} {Fore.GREEN}{Style.BRIGHT}]{Style.RESET_ALL}\n"
+    f"    {Fore.GREEN}{Style.DIM}.{Style.NORMAL}(\\\\()//){Style.DIM}./  {Style.RESET_ALL}{Fore.GREEN}{Style.BRIGHT}'" + f"{'='*tag_size}'{Style.RESET_ALL}\n"
+    f"{Fore.RED}{Style.BRIGHT}.----{Style.NORMAL}{Fore.GREEN}(\\)\\/(/){Style.BRIGHT}{Fore.RED}----.{Style.RESET_ALL}" + "\n"
+    f"{Fore.RED}{Style.BRIGHT}|     {Style.NORMAL}{Fore.GREEN}///\\\\\\{Style.BRIGHT}{Fore.RED}     |{Style.RESET_ALL}" + "\n"
+    f"{Fore.RED}{Style.BRIGHT}|    {Style.NORMAL}{Fore.GREEN}///{Style.DIM}||{Style.NORMAL}\\\\\\    {Style.BRIGHT}{Fore.RED}|{Style.RESET_ALL}" + "\n"
+    f"{Fore.RED}{Style.BRIGHT}|   {Style.NORMAL}{Fore.GREEN}//`{Style.DIM}||||{Style.NORMAL}`\\\\   {Style.BRIGHT}{Fore.RED}|{Style.RESET_ALL}" + "\n"
+    f"{Fore.RED}{Style.BRIGHT}|      {Style.NORMAL}{Fore.GREEN}{Style.DIM}||||{Style.NORMAL}      {Style.BRIGHT}{Fore.RED}|{Style.RESET_ALL}" + "\n"
+    f"{Fore.RED}{Style.BRIGHT}|      {Style.NORMAL}{Fore.GREEN}{Style.DIM}||||{Style.NORMAL}      {Style.BRIGHT}{Fore.RED}|{Style.RESET_ALL}" + "\n"
+    f"{Fore.RED}{Style.BRIGHT}'------====------'{Style.RESET_ALL}" + "\n"
 )
 print(res_decoration)
