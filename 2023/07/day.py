@@ -21,9 +21,9 @@ class Hand:
         return self.cards == other.cards
 
     def __lt__(self, other: object) -> bool:
-        if self.hand_strength < other.hand_strength: return True
-        if self.hand_strength > other.hand_strength: return False
-        return self.card_strengths < other.card_strengths
+        if self.hand_strength == other.hand_strength:
+            return self.card_strengths < other.card_strengths
+        return self.hand_strength < other.hand_strength
 
     def calculate_hand(self) -> None: # cache some calculated values
         counts = defaultdict(lambda:0)
