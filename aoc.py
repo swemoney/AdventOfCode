@@ -40,14 +40,15 @@ def create_new_day():
         print(" * Creating input.txt")
         input_path.write_text(aocd.input_data)
 
-    for i, example in enumerate(aocd.examples):
+    for i, _ in enumerate(aocd.examples):
         test_input_path = Path(day_dir, f"input.test{i+1}.txt")
         print(f" * Creating example input {i+1}")
         test_input_path.write_text(aocd.examples[i].input_data)
 
     test_input_path = Path(day_dir, "input.test2.txt")
     if not test_input_path.exists():
-        test_input_path.touch()
+        print(f" * Creating example input 2 (copied)")
+        test_input_path.write_text(aocd.examples[0].input_data)
 
     day_file_path = Path(day_dir, "day.py")
     if not day_file_path.exists():
