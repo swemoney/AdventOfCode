@@ -2,6 +2,7 @@ from importlib import import_module
 from pathlib import Path
 from datetime import datetime
 from pytz import timezone
+from copy import deepcopy
 import time
 import argparse
 
@@ -94,10 +95,10 @@ with open(Path(day_dir, "input.txt")) as f:
 
 print(f"Running Day {DAY} Puzzles...\n")
 start_time1 = time.time()
-result1 = getattr(puzzle, f"run_part_1")(data)
+result1 = getattr(puzzle, f"run_part_1")(deepcopy(data))
 end_time1 = time.time()
 start_time2 = time.time()
-result2 = getattr(puzzle, f"run_part_2")(data)
+result2 = getattr(puzzle, f"run_part_2")(deepcopy(data))
 end_time2 = time.time()
 
 res1_str = f"({(end_time1 - start_time1)*1000:0.2f}ms) Part 1: {result1}"
