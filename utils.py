@@ -51,6 +51,7 @@ class Direction:
             return getattr(self.coords, attr)
         return super().__getattribute__(attr)
    
+@dataclass(frozen=True)
 class Directions:
     north = Direction(coords=DIRECTIONS["N"], name="North", short="N")
     northeast = Direction(coords=DIRECTIONS["NE"], name="North East", short="NE")
