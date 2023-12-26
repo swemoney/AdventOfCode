@@ -49,7 +49,7 @@ class Direction:
     def __getattr__(self, attr):
         if attr in ["x","y"]:
             return getattr(self.coords, attr)
-        return self.coords
+        return super().__getattribute__(attr)
    
 class Directions:
     north = Direction(coords=DIRECTIONS["N"], name="North", short="N")
