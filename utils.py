@@ -29,17 +29,6 @@ class Vector2:
 class Vector3(Vector2):
     z: int
 
-DIRECTIONS = {
-    "N": Vector2(0, -1),
-    "NE": Vector2(1, -1),
-    "E": Vector2(1, 0),
-    "SE": Vector2(1, 1),
-    "S": Vector2(0, 1),
-    "SW": Vector2(-1, 1),
-    "W": Vector2(-1, 0),
-    "NW": Vector2(-1, -1)
-}
-
 @dataclass(frozen=True)
 class Direction:
     coords: Vector2
@@ -53,14 +42,14 @@ class Direction:
    
 @dataclass(frozen=True)
 class Directions:
-    north = Direction(coords=DIRECTIONS["N"], name="North", short="N")
-    northeast = Direction(coords=DIRECTIONS["NE"], name="North East", short="NE")
-    east = Direction(coords=DIRECTIONS["E"], name="East", short="E")
-    southeast = Direction(coords=DIRECTIONS["SE"], name="South East", short="SE")
-    south = Direction(coords=DIRECTIONS["S"], name="South", short="S")
-    southwest = Direction(coords=DIRECTIONS["SW"], name="South West", short="SW")
-    west = Direction(coords=DIRECTIONS["W"], name="West", short="W")
-    northwest = Direction(coords=DIRECTIONS["NW"], name="North West", short="NW")
+    north = Direction(coords=Vector2(0, -1), name="North", short="N")
+    northeast = Direction(coords=Vector2(1, -1), name="North East", short="NE")
+    east = Direction(coords=Vector2(1, 0), name="East", short="E")
+    southeast = Direction(coords=Vector2(1, 1), name="South East", short="SE")
+    south = Direction(coords=Vector2(0, 1), name="South", short="S")
+    southwest = Direction(coords=Vector2(-1, 1), name="South West", short="SW")
+    west = Direction(coords=Vector2(-1, 0), name="West", short="W")
+    northwest = Direction(coords=Vector2(-1, -1), name="North West", short="NW")
 
 def clamp(n, min, max):
     if n < min: return min
