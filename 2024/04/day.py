@@ -1,3 +1,5 @@
+from utils import array2d_to_dict
+
 # Day 4
 
 XMAS_COORDS = [ # offsets for MAS after finding an X
@@ -45,8 +47,4 @@ def run_part_2(data):
     return mas_x_count
 
 def parse_input(data): # easier to lookup and disregard out of bounds coords in a dictionary
-    d = {}
-    for y in range(len(data)):
-        for x in range(len(data[y])):
-            d[(x,y)] = data[y][x]
-    return data, d
+    return data, array2d_to_dict(data)
