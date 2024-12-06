@@ -54,4 +54,11 @@ class Directions:
 def clamp(n, min, max):
     if n < min: return min
     elif n > max: return max
-    else: return n 
+    else: return n
+
+def array2d_to_dict(l):
+    d = {}
+    for y in range(len(l)):
+        for x in range(len(l[y])):
+            d[(x,y)] = l[y][x]
+    return d
