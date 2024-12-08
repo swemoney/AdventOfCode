@@ -24,6 +24,21 @@ class Vector2:
     
     def __div__(self, other):
         return type(self)(*[getattr(self, f.name) / getattr(other, f.name) for f in fields(self)])
+    
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+    
+    def __ne__(self, other):
+        return not self.eq(other)
+    
+    def __hash__(self):
+        return hash(str(self))
+    
+    def __str__(self):
+        return f"Vector2({self.x}, {self.y})"
+    
+    def __repr__(self):
+        return str(self)
 
 @dataclass(frozen=True)
 class Vector3(Vector2):
@@ -56,9 +71,12 @@ def clamp(n, min, max):
     elif n > max: return max
     else: return n
 
-def array2d_to_dict(l):
+def array2d_to_dict(l, vector2=False):
     d = {}
     for y in range(len(l)):
         for x in range(len(l[y])):
-            d[(x,y)] = l[y][x]
+            if vector2:
+                d[Vector2(x, y)] = l[y][x]
+            else:
+                d[(x,y)] = l[y][x]
     return d
