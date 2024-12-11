@@ -71,12 +71,13 @@ def clamp(n, min, max):
     elif n > max: return max
     else: return n
 
-def array2d_to_dict(l, vector2=False):
+def array2d_to_dict(l, vector2=False, convert_with=None):
     d = {}
     for y in range(len(l)):
         for x in range(len(l[y])):
+            val = convert_with(l[y][x]) if convert_with != None else l[y][x]
             if vector2:
-                d[Vector2(x, y)] = l[y][x]
+                d[Vector2(x, y)] = val
             else:
-                d[(x,y)] = l[y][x]
+                d[(x,y)] = val
     return d
