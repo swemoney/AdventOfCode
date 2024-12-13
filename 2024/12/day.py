@@ -1,5 +1,4 @@
 from utils import array2d_to_dict, Vector2, Directions
-from copy import deepcopy
 
 DIRECTIONS = [Directions.north, Directions.east, Directions.south, Directions.west]
 
@@ -73,6 +72,7 @@ def calculate_sides(grid, region, plant):
 
     return perimeter, perimeter - shared
 
+# Used this in part 1, switched to the side search above for both parts
 def calculate_perimeter(region):
     perimeter = 0
     for coords in region:
