@@ -26,10 +26,27 @@ class Vector2:
         return type(self)(*[getattr(self, f.name) / getattr(other, f.name) for f in fields(self)])
     
     def __eq__(self, other):
+        if not isinstance(other, Vector2): return False
         return self.x == other.x and self.y == other.y
     
     def __ne__(self, other):
         return not self.eq(other)
+    
+    def __lt__(self, other):
+        if not isinstance(other, Vector2): return False
+        return (self.x, self.y) < (other.x, other.y)
+    
+    def __gt__(self, other):
+        if not isinstance(other, Vector2): return False
+        return (self.x, self.y) > (other.x, other.y)
+    
+    def __le__(self, other):
+        if not isinstance(other, Vector2): return False
+        return (self.x, self.y) <= (other.x, other.y)
+    
+    def __ge__(self, other):
+        if not isinstance(other, Vector2): return False
+        return (self.x, self.y) >= (other.x, other.y)
     
     def __hash__(self):
         return hash(str(self))
