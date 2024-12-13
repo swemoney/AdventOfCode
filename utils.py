@@ -30,7 +30,7 @@ class Vector2:
         return self.x == other.x and self.y == other.y
     
     def __ne__(self, other):
-        return not self.eq(other)
+        return not self.__eq__(other)
     
     def __lt__(self, other):
         if not isinstance(other, Vector2): return False
