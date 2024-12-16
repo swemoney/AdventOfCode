@@ -98,3 +98,14 @@ def array2d_to_dict(l, vector2=False, convert_with=None):
             else:
                 d[(x,y)] = val
     return d
+
+def print_grid(grid: dict[Vector2, str]):
+    all_x = [pos.x for pos in grid.keys()]
+    all_y = [pos.y for pos in grid.keys()]
+    min_x, max_x = min(all_x), max(all_x)
+    min_y, max_y = min(all_y), max(all_y)
+    for y in range(min_y, max_y + 1):
+        row = ""
+        for x in range(min_x, max_x + 1):
+            row += grid.get(Vector2(x, y), "?")
+        print(row.strip())
