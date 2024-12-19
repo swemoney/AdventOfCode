@@ -1,4 +1,5 @@
 from dataclasses import dataclass, fields
+from heapq import heappush, heappop
 
 # Various methods that I could probably use in multiple puzzles
 
@@ -109,3 +110,55 @@ def print_grid(grid: dict[Vector2, str]):
         for x in range(min_x, max_x + 1):
             row += grid.get(Vector2(x, y), "?")
         print(row.strip())
+
+class AStarNode:
+    def __init__(self, coords: Vector2, parent=None):
+        self.coords = coords
+        self.parent = parent
+
+        self.g = 0
+        self.h = 0
+        self.f = 0
+
+    def __lt__(self, other):
+        return self.f < other.f
+    
+CARDINAL_DIRECTIONS = [Directions.east.coords, Directions.south.coords, Directions.west.coords, Directions.north.coords]
+
+def a_star(free_spaces: set[Vector2], start_coords: Vector2, end_coords: Vector2, deltas: list[Vector2] = CARDINAL_DIRECTIONS):
+    open_nodes: list[AStarNode] = []
+    closed: set[Vector2] = set()
+
+    start_node  = AStarNode(start_coords)
+    heappush(open_nodes, start_node)
+
+    while open_nodes:
+        current_node = heappop(open_nodes)
+        closed.add(current_node.coords)
+        
+        if current_node.coords == end_coords:
+            path: list[Vector2] = []
+            while current_node:
+                path.append(current_node.coords)
+                current_node = current_node.parent
+            return path[::-1]
+        
+        for neighbor in get_neighbors(free_spaces, current_node.coords, deltas):
+            if neighbor in closed: continue
+            neighbor_node = AStarNode(neighbor, parent=current_node)
+            neighbor_node.g = current_node.g + 1
+            neighbor_node.h = manhattan_distance(neighbor, end_coords)
+            neighbor_node.f = neighbor_node.g + neighbor_node.h
+
+            existing_node = next((node for node in open_nodes if node.coords == neighbor), None)
+            if existing_node and existing_node.g <= neighbor_node.g: continue
+
+            heappush(open_nodes, neighbor_node)
+
+    return None
+
+def manhattan_distance(a: Vector2, b: Vector2):
+    return abs(a.x - b.x) + abs(a.y - b.y)
+
+def get_neighbors(free_spaces: set[Vector2], coords: Vector2, deltas: list[Vector2] = CARDINAL_DIRECTIONS):
+    return [coords + delta for delta in deltas if coords + delta in free_spaces]
