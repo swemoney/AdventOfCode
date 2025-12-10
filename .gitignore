@@ -130,3 +130,7 @@ dmypy.json
 
 # VSCode
 .vscode/
+
+# Advent of Code specific files
+*/*/input.txt
+*/*/README.md

@@ -58,13 +58,6 @@ def create_new_day():
     else:
         print(" * day.py already exists (skipping)")
     
-    readme_file_path = Path(day_dir, "README.md")
-    if not readme_file_path.exists():
-        print(" * Creating README.md")
-        readme_file_path.write_text(README_FILE)
-    else:
-        print(" * README.md already exists (skipping)")
-
 # Create a new day from templates and quit
 if args.create:
     create_new_day()
